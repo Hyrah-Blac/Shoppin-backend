@@ -13,8 +13,9 @@ const allowedOrigins = [
   process.env.CLIENT_URL,
   'http://localhost:3000',
   'http://localhost:3001',
-  'https://shoppintrest.vercel.app',
-  'https://shoppintrest-4sbic6w6w-hyrahs-projects.vercel.app'
+  'https://shoppintrest.vercel.app/',
+  'https://shoppintrest-git-main-hyrahs-projects.vercel.app/',
+  'https://shoppintrest-4sbic6w6w-hyrahs-projects.vercel.app/',
 ].filter(Boolean);
 
 app.use(cors({
