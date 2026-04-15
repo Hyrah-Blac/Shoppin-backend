@@ -5,9 +5,11 @@ const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 
 const generateToken = (user) =>
-  jwt.sign({ id: user._id, email: user.email }, process.env.JWT_SECRET, {
-    expiresIn: '30d',
-  });
+  jwt.sign(
+    { id: user._id, email: user.email, role: user.role },
+    process.env.JWT_SECRET,
+    { expiresIn: '30d' }
+  );
 
 router.post('/register', async (req, res) => {
   const { name, email, password } = req.body;
@@ -25,6 +27,7 @@ router.post('/register', async (req, res) => {
     name: user.name,
     email: user.email,
     avatar: user.avatar,
+    role: user.role,
     token: generateToken(user),
   });
 });
@@ -42,6 +45,7 @@ router.post('/login', async (req, res) => {
     name: user.name,
     email: user.email,
     avatar: user.avatar,
+    role: user.role,
     token: generateToken(user),
   });
 });

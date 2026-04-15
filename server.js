@@ -1,3 +1,5 @@
+
+  
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
@@ -17,11 +19,8 @@ const allowedOrigins = [
 
 app.use(cors({
   origin: (origin, callback) => {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
+    if (!origin || allowedOrigins.includes(origin)) callback(null, true);
+    else callback(new Error('Not allowed by CORS'));
   },
   credentials: true,
 }));
@@ -33,6 +32,9 @@ app.use('/api/products', require('./routes/products'));
 app.use('/api/boards', require('./routes/boards'));
 app.use('/api/saves', require('./routes/saves'));
 app.use('/api/users', require('./routes/users'));
+app.use('/api/orders', require('./routes/orders'));
+app.use('/api/reviews', require('./routes/reviews'));
+app.use('/api/admin', require('./routes/admin'));
 
 app.get('/', (req, res) => res.json({ message: 'ShopPin API running' }));
 
